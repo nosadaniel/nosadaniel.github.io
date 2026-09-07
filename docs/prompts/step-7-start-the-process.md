@@ -1,0 +1,1 @@
+Execute all tasks detailed in tasks.md, ensuring that each step aligns with the project specifications outlined in prd.md. After completing each task, update the checkbox list in todo.md to reflect the completion status, and add any new tasks or notes as necessary, while adhering strictly to the guidelines specified in rules.md.
