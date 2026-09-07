@@ -1,4 +1,4 @@
-import { projects } from "../content/projects";
+import { projects } from "../src/content/projects";
 
 const urls = new Set<string>();
 for (const project of projects) {

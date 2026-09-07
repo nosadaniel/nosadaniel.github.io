@@ -7,7 +7,7 @@ export type BlogFrontmatter = {
   summary: string;
 };
 
-const BLOG_DIR = path.join(process.cwd(), "content", "blog");
+const BLOG_DIR = path.join(process.cwd(), "src", "content", "blog");
 
 export async function getBlogSource(slug: string): Promise<string> {
   const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
