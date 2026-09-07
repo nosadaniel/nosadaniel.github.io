@@ -1,4 +1,4 @@
-export type ProjectCategory = "ai" | "cybersecurity" | "open-source" | "mobile" | "infra";
+export type ProjectCategory = "ai" | "cybersecurity" | "open-source" | "infra";
 
 export type ProjectLink = {
   label: string;
@@ -24,7 +24,6 @@ export const categoryLabels: Record<ProjectCategory, string> = {
   ai: "AI & Agentic Workflows",
   cybersecurity: "Cybersecurity Applications",
   "open-source": "Open Source Contributions",
-  mobile: "Mobile Applications",
   infra: "Infrastructure & DevOps",
 };
 
@@ -125,15 +124,20 @@ export const projects: Project[] = [
   },
   {
     slug: "geiger-toolbox",
-    title: "GeigerToolbox",
+    title: "GeigerToolbox (Geiger App)",
     company: "IIT (FHNW) & cyberGEIGER GmbH",
     category: "cybersecurity",
     period: "2021 - 2026",
     description:
-      "SME-facing cybersecurity risk-assessment and monitoring app. Prototyped and researched at IIT (FHNW) as part of the EU Horizon 2020 GEIGER project, then owned and evolved into a production-ready application at cyberGEIGER GmbH. Includes a merge-triggered CI/CD orchestrator (GitHub Actions) that classifies conventional-commit history into release/patch/none and ships to environment-gated Play Store and Firebase targets with automatic semantic-version tagging.",
+      "SME-facing cybersecurity risk-assessment and monitoring app, published to Android and iOS as the Geiger App. Prototyped and researched at IIT (FHNW) as part of the EU Horizon 2020 GEIGER project, then owned and evolved into a production-ready application at cyberGEIGER GmbH. Includes a merge-triggered CI/CD orchestrator (GitHub Actions) that classifies conventional-commit history into release/patch/none and ships to environment-gated Play Store and Firebase targets with automatic semantic-version tagging.",
     techStack: ["Flutter", "Dart", "GitHub Actions"],
-    role: "Prototyped at IIT, evolved to production at cyberGEIGER",
-    links: [{ label: "Project site", href: "https://cyber-geiger.eu" }],
+    role: "Prototyped at IIT, evolved to production at cyberGEIGER GmbH",
+    links: [
+      { label: "cyberGEIGER GmbH", href: "https://cyber-geiger.com" },
+      { label: "Project site", href: "https://cyber-geiger.eu" },
+      { label: "Android", href: "https://play.google.com/store/apps/details?id=com.cybergeiger.toolbox" },
+      { label: "iOS", href: "https://apps.apple.com/app/geiger-app/id6752607888" },
+    ],
   },
   {
     slug: "datapro-games-smart-home-challenge",
@@ -187,19 +191,6 @@ export const projects: Project[] = [
     techStack: ["Swift"],
     role: "Contributor",
     links: [{ label: "GitHub", href: "https://github.com/Loupehope/PasswordChecker" }],
-  },
-  {
-    slug: "geiger-app",
-    title: "Geiger App",
-    category: "mobile",
-    period: "2021 - 2026",
-    description: "Cybersecurity toolbox for SMEs, available on Android and iOS.",
-    techStack: ["Flutter", "Dart"],
-    role: "Prototyped at IIT, evolved to production at cyberGEIGER",
-    links: [
-      { label: "Android", href: "https://play.google.com/store/apps/details?id=com.cybergeiger.toolbox" },
-      { label: "iOS", href: "https://apps.apple.com/app/geiger-app/id6752607888" },
-    ],
   },
   {
     slug: "infrastructure-as-code",

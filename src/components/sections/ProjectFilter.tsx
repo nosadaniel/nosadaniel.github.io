@@ -7,15 +7,20 @@ import { Tag } from "@/components/ui/Tag";
 import { cn } from "@/lib/utils";
 import { categoryLabels, type Project, type ProjectCategory } from "@/content/projects";
 
-const categories: (ProjectCategory | "all")[] = ["all", "ai", "cybersecurity", "open-source", "mobile", "infra"];
+const categories: (ProjectCategory | "all")[] = ["all", "ai", "cybersecurity", "open-source", "infra"];
 
 export function ProjectFilter({ projects }: { projects: Project[] }) {
   const [active, setActive] = useState<ProjectCategory | "all">("all");
 
-  const filtered = useMemo(
-    () => (active === "all" ? projects : projects.filter((p) => p.category === active)),
-    [active, projects],
-  );
+  const filtered = useMemo(() => {
+    if (active !== "all") {
+      return projects.filter((p) => p.category === active);
+    }
+    // Feature the strongest project up front on the unfiltered view; once
+    // someone picks a specific category they're browsing deliberately, so
+    // that category's normal order applies instead.
+    return [...projects].sort((a, b) => Number(!!b.featured) - Number(!!a.featured));
+  }, [active, projects]);
 
   return (
     <div>
