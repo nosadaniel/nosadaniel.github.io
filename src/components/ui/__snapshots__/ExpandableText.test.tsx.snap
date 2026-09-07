@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`ExpandableText renders long text collapsed by default with a Read more toggle 1`] = `
+<div>
+  <div
+    class="mt-3"
+  >
+    <p
+      class="overflow-hidden text-sm leading-relaxed text-text-secondary transition-[max-height] duration-300 ease-in-out motion-reduce:transition-none max-h-[4.5rem]"
+      id="_r_1_"
+    >
+      This is a deliberately long description used to verify that text past the preview threshold gets collapsed by default and can be expanded by the reader on demand, revealing the rest of the sentence.
+    </p>
+    <button
+      aria-controls="_r_1_"
+      aria-expanded="false"
+      class="mt-1.5 inline-flex items-center gap-1 text-xs font-medium text-accent"
+      type="button"
+    >
+      Read more
+      <svg
+        aria-hidden="true"
+        class="transition-transform duration-200 motion-reduce:transition-none"
+        fill="currentColor"
+        height="12"
+        viewBox="0 0 256 256"
+        width="12"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;

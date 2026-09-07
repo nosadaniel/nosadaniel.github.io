@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { ArrowSquareOut } from "@phosphor-icons/react";
 import { Card } from "@/components/ui/Card";
 import { Tag } from "@/components/ui/Tag";
+import { ExpandableText } from "@/components/ui/ExpandableText";
 import { cn } from "@/lib/utils";
 import { categoryLabels, type Project, type ProjectCategory } from "@/content/projects";
 
@@ -44,7 +45,7 @@ export function ProjectFilter({ projects }: { projects: Project[] }) {
 
       <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {filtered.map((project) => (
-          <Card key={project.slug} featured={project.featured}>
+          <Card key={project.slug} featured={project.featured} className={!project.featured ? "flex h-full flex-col" : undefined}>
             <div className="flex items-start justify-between gap-3">
               <h3 className="font-display text-lg font-semibold text-text-primary">{project.title}</h3>
               {project.featured && (
@@ -56,7 +57,11 @@ export function ProjectFilter({ projects }: { projects: Project[] }) {
 
             {project.company && <p className="mt-1 text-sm text-text-secondary">{project.company}</p>}
 
-            <p className="mt-3 text-sm leading-relaxed text-text-secondary">{project.description}</p>
+            {project.featured ? (
+              <p className="mt-3 text-sm leading-relaxed text-text-secondary">{project.description}</p>
+            ) : (
+              <ExpandableText text={project.description} />
+            )}
 
             {project.stats && (
               <div className="mt-4 grid grid-cols-2 gap-4 border-y border-border py-4 sm:grid-cols-4">
@@ -82,7 +87,7 @@ export function ProjectFilter({ projects }: { projects: Project[] }) {
             {project.note && <p className="mt-2 text-xs text-text-secondary italic">{project.note}</p>}
 
             {project.links.length > 0 && (
-              <div className="mt-4 flex flex-wrap gap-3">
+              <div className={cn("flex flex-wrap gap-3", project.featured ? "mt-4" : "mt-auto pt-4")}>
                 {project.links.map((link) => (
                   <a
                     key={link.href}

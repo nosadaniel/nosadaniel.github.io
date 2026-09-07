@@ -21,7 +21,7 @@ exports[`Hero renders the name, title, tagline, and CTAs 1`] = `
       <p
         class="mt-6 max-w-prose text-base leading-relaxed text-text-secondary"
       >
-        I build production AI and cybersecurity systems, from fine-tuned models to the web, mobile, and CI/CD that ship them.
+        I build production AI systems for cybersecurity and beyond: fine-tuned LLMs, RAG workflows, web, mobile, and CI/CD, end to end.
       </p>
       <div
         class="mt-8 flex flex-wrap gap-3"
