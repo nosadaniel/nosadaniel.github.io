@@ -1,4 +1,4 @@
-import { EnvelopeSimple, Phone, LinkedinLogo, GithubLogo } from "@phosphor-icons/react/dist/ssr";
+import { EnvelopeSimple, LinkedinLogo, GithubLogo } from "@phosphor-icons/react/dist/ssr";
 import { IconLink } from "@/components/ui/IconLink";
 import { profile } from "@/content/profile";
 
@@ -15,11 +15,6 @@ export function Contact() {
           href={`mailto:${profile.contact.email}`}
           label={profile.contact.email}
           icon={<EnvelopeSimple size={18} aria-hidden="true" />}
-        />
-        <IconLink
-          href={`tel:${profile.contact.phone}`}
-          label={profile.contact.phone}
-          icon={<Phone size={18} aria-hidden="true" />}
         />
         <IconLink href={profile.contact.linkedin} label="LinkedIn" icon={<LinkedinLogo size={18} aria-hidden="true" />} />
         <IconLink href={profile.contact.github} label="GitHub" icon={<GithubLogo size={18} aria-hidden="true" />} />

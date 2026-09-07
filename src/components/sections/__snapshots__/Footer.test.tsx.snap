@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Footer renders the tech credit and copyright lines 1`] = `
+<div>
+  <footer
+    class="border-t border-border px-4 py-8 text-center text-xs text-text-secondary sm:px-6"
+  >
+    <p>
+      Built with Next.js and Tailwind, deployed on GitHub Pages.
+    </p>
+    <p
+      class="mt-1"
+    >
+      © 2026 Nosakhare Daniel Ahanor
+    </p>
+  </footer>
+</div>
+`;

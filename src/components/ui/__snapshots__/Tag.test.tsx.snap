@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Tag renders its label 1`] = `
+<div>
+  <span
+    class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+  >
+    Python
+  </span>
+</div>
+`;

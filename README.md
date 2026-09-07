@@ -97,6 +97,18 @@ There's no CMS and no database. Site copy is just typed TypeScript modules and M
 - The Jest suite (`src/__tests__/content/projects.test.ts`) enforces that every project has required fields, a unique slug, and well-formed links
 - `scripts/check-links.ts` actually pings every external link at CI time (not just unit-tests the shape) and fails the build if one 404s
 
+### Snapshot ("golden") tests
+
+Every component under `src/components/` has a co-located `*.test.tsx` that renders it and calls `toMatchSnapshot()`. The first run writes a reference (`__snapshots__/*.snap`, committed to git); every run after that fails if the rendered output changes, so an unintended visual regression gets caught instead of shipped silently.
+
+When you *intentionally* change a component's markup, review the diff, then update the reference:
+
+```bash
+npm test -- -u
+```
+
+Always read the diff before running `-u` — the point of a golden test is to force a human look at the change, not to rubber-stamp it.
+
 ### The blog pipeline
 
 The single blog post lives at `src/content/blog/efficient-domain-adaptation.mdx` as frontmatter + Markdown/MDX. `src/lib/mdx.ts` reads the raw file off disk at build time; `src/app/blog/efficient-domain-adaptation/page.tsx` compiles it with `next-mdx-remote/rsc`'s `compileMDX`, which returns both the parsed `frontmatter` (used for the page's `<title>`/meta tags via `generateMetadata`) and the rendered `content`. The MDX file can use the `<StatCallout />` component directly inline, that works because `compileMDX` is called with `blockJS: false` (safe here since the MDX content is authored by the site owner, not user input, so `next-mdx-remote`'s default JS-expression stripping, which is a defense against untrusted MDX, is deliberately relaxed).

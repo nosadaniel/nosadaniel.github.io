@@ -24,14 +24,15 @@ export function Hero() {
       </div>
 
       <div className="order-1 flex justify-center md:order-2 md:justify-end">
-        <Image
-          src={profile.headshot}
-          alt={profile.name}
-          width={240}
-          height={240}
-          priority
-          className="h-48 w-48 rounded-full border border-border object-cover md:h-60 md:w-60"
-        />
+        <div className="relative h-52 w-52 overflow-hidden rounded-full border border-border bg-white md:h-64 md:w-64">
+          <Image
+            src={profile.headshot}
+            alt={profile.name}
+            fill
+            priority
+            className="object-contain"
+          />
+        </div>
       </div>
     </section>
   );

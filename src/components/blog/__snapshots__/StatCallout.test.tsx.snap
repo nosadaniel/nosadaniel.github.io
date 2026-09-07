@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`StatCallout renders every stat label 1`] = `
+<div>
+  <div
+    class="my-8 grid grid-cols-2 gap-6 rounded-lg border border-border bg-surface p-6 sm:grid-cols-4"
+  >
+    <div>
+      <div
+        class="font-mono text-2xl font-semibold text-accent"
+      >
+        <span>
+          0
+          %
+        </span>
+      </div>
+      <div
+        class="text-xs text-text-secondary"
+      >
+        Accuracy
+      </div>
+    </div>
+    <div>
+      <div
+        class="font-mono text-2xl font-semibold text-accent"
+      >
+        <span>
+          0
+          %
+        </span>
+      </div>
+      <div
+        class="text-xs text-text-secondary"
+      >
+        Precision
+      </div>
+    </div>
+  </div>
+</div>
+`;

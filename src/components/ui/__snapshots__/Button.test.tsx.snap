@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Button renders a mailto link without target blank 1`] = `
+<div>
+  <a
+    class="inline-flex items-center justify-center rounded-md px-5 py-2.5 text-sm font-medium whitespace-nowrap transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 bg-accent text-bg hover:opacity-90"
+    href="mailto:test@example.com"
+    rel="noopener noreferrer"
+  >
+    Email
+  </a>
+</div>
+`;
+
+exports[`Button renders an external link with target and rel set 1`] = `
+<div>
+  <a
+    class="inline-flex items-center justify-center rounded-md px-5 py-2.5 text-sm font-medium whitespace-nowrap transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 border border-border text-text-primary hover:border-accent hover:text-accent"
+    href="https://github.com/nosadaniel"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    GitHub
+  </a>
+</div>
+`;
+
+exports[`Button renders an internal link as a Next Link 1`] = `
+<div>
+  <a
+    class="inline-flex items-center justify-center rounded-md px-5 py-2.5 text-sm font-medium whitespace-nowrap transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 bg-accent text-bg hover:opacity-90"
+    href="/#projects"
+  >
+    View Projects
+  </a>
+</div>
+`;

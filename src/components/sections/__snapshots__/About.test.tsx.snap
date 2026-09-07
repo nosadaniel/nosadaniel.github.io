@@ -1,0 +1,633 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`About renders summary, experience timeline, skills, and education 1`] = `
+<div>
+  <section
+    class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24"
+    id="about"
+  >
+    <h2
+      class="font-display text-3xl font-bold text-text-primary"
+    >
+      About
+    </h2>
+    <p
+      class="mt-4 max-w-prose leading-relaxed text-text-secondary"
+    >
+      Software Engineer specializing in production AI and cybersecurity applications, with experience building agentic AI and RAG systems, LLM evaluation and fine-tuning workflows, and user-facing web and mobile products. Combines full-stack engineering with Azure cloud infrastructure, Terraform, and CI/CD, with a track record of taking research-driven cybersecurity solutions from prototype to production.
+    </p>
+    <h3
+      class="mt-12 font-display text-xl font-semibold text-text-primary"
+    >
+      Experience
+    </h3>
+    <div
+      class="mt-6 flex flex-col gap-8"
+    >
+      <div
+        class="border-l-2 border-border pl-5"
+      >
+        <div
+          class="flex flex-wrap items-baseline justify-between gap-x-4"
+        >
+          <h4
+            class="font-medium text-text-primary"
+          >
+            Software Engineer
+            , 
+            cyberGEIGER GmbH
+          </h4>
+          <span
+            class="font-mono text-xs text-text-secondary"
+          >
+            Aug. 2024 - Present
+          </span>
+        </div>
+        <p
+          class="text-xs text-text-secondary"
+        >
+          Freiburg, Germany
+        </p>
+        <ul
+          class="mt-3 list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-text-secondary"
+        >
+          <li>
+            Develop agentic AI and retrieval-augmented generation (RAG) systems on Azure AI for cybersecurity use cases, including automated threat and vulnerability assessments through the Intelligent Assessment Service and security-awareness training with cyberCoach
+          </li>
+          <li>
+            Drive frontend engineering for SME- and learner-facing products, including GeigerToolbox and the sysder AI Assistant, while owning release engineering and CI/CD workflows
+          </li>
+          <li>
+            Contribute to AI-powered learning experiences, DataPro Assistant and DataPro Games, for the DataPro Erasmus+ programme in collaboration with Pädagogische Hochschule Freiburg
+          </li>
+          <li>
+            Provision and evolve Azure cloud infrastructure using Terraform and infrastructure-as-code practices
+          </li>
+          <li>
+            Conduct applied machine-learning research on adapting foundation models for security applications, with a focus on synthetic-data generation, evaluation pipelines, and open-source publication
+          </li>
+        </ul>
+        <div
+          class="mt-3 flex flex-wrap gap-2"
+        >
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Azure AI
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            RAG
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Agentic AI
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Terraform
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            CI/CD
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Flutter
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            React
+          </span>
+        </div>
+      </div>
+      <div
+        class="border-l-2 border-border pl-5"
+      >
+        <div
+          class="flex flex-wrap items-baseline justify-between gap-x-4"
+        >
+          <h4
+            class="font-medium text-text-primary"
+          >
+            IT Consultant
+            , 
+            IAESTE Services / ISACD
+          </h4>
+          <span
+            class="font-mono text-xs text-text-secondary"
+          >
+            Mar. 2023 - Aug. 2024
+          </span>
+        </div>
+        <p
+          class="text-xs text-text-secondary"
+        >
+          Benin City, Nigeria
+        </p>
+        <ul
+          class="mt-3 list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-text-secondary"
+        >
+          <li>
+            IT consulting and exchange administration for IAESTE's student exchange programme
+          </li>
+        </ul>
+        <div
+          class="mt-3 flex flex-wrap gap-2"
+        >
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            IT Consulting
+          </span>
+        </div>
+      </div>
+      <div
+        class="border-l-2 border-border pl-5"
+      >
+        <div
+          class="flex flex-wrap items-baseline justify-between gap-x-4"
+        >
+          <h4
+            class="font-medium text-text-primary"
+          >
+            Research Assistant
+            , 
+            Institute for Interactive Technologies (IIT), FHNW
+          </h4>
+          <span
+            class="font-mono text-xs text-text-secondary"
+          >
+            Mar. 2022 - Jan. 2023
+          </span>
+        </div>
+        <p
+          class="text-xs text-text-secondary"
+        >
+          Switzerland
+        </p>
+        <ul
+          class="mt-3 list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-text-secondary"
+        >
+          <li>
+            Built GeigerToolbox, a cybersecurity risk-assessment tool for SMEs, as part of the EU Horizon 2020 GEIGER research project
+          </li>
+        </ul>
+        <div
+          class="mt-3 flex flex-wrap gap-2"
+        >
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Flutter
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Dart
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Research
+          </span>
+        </div>
+      </div>
+      <div
+        class="border-l-2 border-border pl-5"
+      >
+        <div
+          class="flex flex-wrap items-baseline justify-between gap-x-4"
+        >
+          <h4
+            class="font-medium text-text-primary"
+          >
+            Mobile Application Developer (Intern)
+            , 
+            Institute for Interactive Technologies (IIT), FHNW
+          </h4>
+          <span
+            class="font-mono text-xs text-text-secondary"
+          >
+            Apr. 2021 - Mar. 2022
+          </span>
+        </div>
+        <p
+          class="text-xs text-text-secondary"
+        >
+          Switzerland
+        </p>
+        <ul
+          class="mt-3 list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-text-secondary"
+        >
+          <li>
+            Prototyped and designed the initial GeigerToolbox concept for the EU Horizon 2020 GEIGER research project
+          </li>
+        </ul>
+        <div
+          class="mt-3 flex flex-wrap gap-2"
+        >
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Flutter
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Dart
+          </span>
+        </div>
+      </div>
+      <div
+        class="border-l-2 border-border pl-5"
+      >
+        <div
+          class="flex flex-wrap items-baseline justify-between gap-x-4"
+        >
+          <h4
+            class="font-medium text-text-primary"
+          >
+            Early Career
+            , 
+            Various (Tech Facilitator, FrontEnd Developer, Learning Facilitator)
+          </h4>
+          <span
+            class="font-mono text-xs text-text-secondary"
+          >
+            2017 - 2021
+          </span>
+        </div>
+        <p
+          class="text-xs text-text-secondary"
+        >
+          Nigeria
+        </p>
+        <ul
+          class="mt-3 list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-text-secondary"
+        >
+          <li>
+            Tech Facilitator, HarvardCom Computer Institute and Technologies
+          </li>
+          <li>
+            FrontEnd Developer (Volunteer), ICT, Federal University of Petroleum Resources
+          </li>
+          <li>
+            Learning Facilitator, Google Digital Skills for Africa
+          </li>
+          <li>
+            Intern / FrontEnd Developer, Complete Computers and Technology
+          </li>
+        </ul>
+        <div
+          class="mt-3 flex flex-wrap gap-2"
+        >
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Frontend
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Teaching
+          </span>
+        </div>
+      </div>
+    </div>
+    <h3
+      class="mt-12 font-display text-xl font-semibold text-text-primary"
+    >
+      Skills
+    </h3>
+    <div
+      class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2"
+    >
+      <div>
+        <h4
+          class="text-sm font-medium text-text-primary"
+        >
+          AI / ML
+        </h4>
+        <div
+          class="mt-2 flex flex-wrap gap-2"
+        >
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            LLM Fine-Tuning
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            PEFT/LoRA
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Data Synthesis
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            LLM Evaluation
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            RAG
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Vector Databases
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Model Merging
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Agentic Workflows
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Azure AI Agents
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            LangChain
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Microsoft Agent Framework
+          </span>
+        </div>
+      </div>
+      <div>
+        <h4
+          class="text-sm font-medium text-text-primary"
+        >
+          Cloud & DevOps
+        </h4>
+        <div
+          class="mt-2 flex flex-wrap gap-2"
+        >
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Azure
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Terraform (IaC)
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Docker
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Kubernetes
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            CI/CD (GitHub Actions, GitLab CI)
+          </span>
+        </div>
+      </div>
+      <div>
+        <h4
+          class="text-sm font-medium text-text-primary"
+        >
+          Backend
+        </h4>
+        <div
+          class="mt-2 flex flex-wrap gap-2"
+        >
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Python
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            FastAPI
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Django
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            REST APIs
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Swagger
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Postman
+          </span>
+        </div>
+      </div>
+      <div>
+        <h4
+          class="text-sm font-medium text-text-primary"
+        >
+          Frontend & Mobile
+        </h4>
+        <div
+          class="mt-2 flex flex-wrap gap-2"
+        >
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Flutter
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Dart
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            TypeScript
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            SwiftUI
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Swift
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Firebase
+          </span>
+        </div>
+      </div>
+      <div>
+        <h4
+          class="text-sm font-medium text-text-primary"
+        >
+          Cybersecurity
+        </h4>
+        <div
+          class="mt-2 flex flex-wrap gap-2"
+        >
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Vulnerability Analysis
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            Phishing Detection
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            GDPR / Data Protection
+          </span>
+        </div>
+      </div>
+      <div>
+        <h4
+          class="text-sm font-medium text-text-primary"
+        >
+          Design
+        </h4>
+        <div
+          class="mt-2 flex flex-wrap gap-2"
+        >
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            UI Design (Figma, Adobe XD)
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            User Experience (Miro)
+          </span>
+        </div>
+      </div>
+      <div>
+        <h4
+          class="text-sm font-medium text-text-primary"
+        >
+          Languages
+        </h4>
+        <div
+          class="mt-2 flex flex-wrap gap-2"
+        >
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            English (Native/Bilingual)
+          </span>
+          <span
+            class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+          >
+            German (A2, Limited Working)
+          </span>
+        </div>
+      </div>
+    </div>
+    <h3
+      class="mt-12 font-display text-xl font-semibold text-text-primary"
+    >
+      Education & Certifications
+    </h3>
+    <div
+      class="mt-6 flex flex-col gap-4"
+    >
+      <div>
+        <p
+          class="font-medium text-text-primary"
+        >
+          Bachelor in Computer Science
+        </p>
+        <p
+          class="text-sm text-text-secondary"
+        >
+          Federal University of Petroleum Resources, Nigeria
+          , 
+          Mar. 2015 - Jan. 2019
+        </p>
+        <p
+          class="text-sm text-text-secondary"
+        >
+          Thesis: "Automated Waste Management System"
+        </p>
+      </div>
+      <div>
+        <p
+          class="font-medium text-text-primary"
+        >
+          Senior School Certificate Examination
+        </p>
+        <p
+          class="text-sm text-text-secondary"
+        >
+          NECO, Standard Foundation High School, Benin City, Nigeria
+          , 
+          May 2013
+        </p>
+      </div>
+    </div>
+    <div
+      class="mt-6 flex flex-wrap gap-2"
+    >
+      <span
+        class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+      >
+        KCNA (Kubernetes and Cloud Native Associate)
+      </span>
+      <span
+        class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+      >
+        LFS250 (Kubernetes and Cloud Native Essentials)
+      </span>
+      <span
+        class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+      >
+        Introduction to Cloud Infrastructure Technologies (edX, Verified Certificate)
+      </span>
+      <span
+        class="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-text-secondary"
+      >
+        Data Engineering: Data Principles (Lightbend)
+      </span>
+    </div>
+  </section>
+</div>
+`;

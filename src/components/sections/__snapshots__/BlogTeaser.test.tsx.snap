@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`BlogTeaser renders the blog post title, summary, and read-more link 1`] = `
+<div>
+  <section
+    class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24"
+    id="blog"
+  >
+    <h2
+      class="font-display text-3xl font-bold text-text-primary"
+    >
+      Latest writing
+    </h2>
+    <div
+      class="rounded-lg border border-border bg-surface p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent hover:bg-surface-hover mt-8"
+    >
+      <h3
+        class="font-display text-xl font-semibold text-text-primary"
+      >
+        Efficient Domain Adaptation for Real-World LLM Use Cases
+      </h3>
+      <p
+        class="mt-3 max-w-prose text-sm leading-relaxed text-text-secondary"
+      >
+        How a lightweight fine-tuned adapter learned to reason about phishing emails, not just flag them, without retraining a billion-parameter model.
+      </p>
+      <a
+        class="mt-4 inline-block text-sm text-accent hover:underline"
+        href="/blog/efficient-domain-adaptation"
+      >
+        Read the full post
+      </a>
+    </div>
+  </section>
+</div>
+`;

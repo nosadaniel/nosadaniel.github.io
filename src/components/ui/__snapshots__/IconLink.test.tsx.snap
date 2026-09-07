@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`IconLink renders an external link with the given icon and label 1`] = `
+<div>
+  <a
+    class="inline-flex min-h-11 items-center gap-2 rounded-md border border-border px-4 py-2.5 text-sm text-text-primary transition-colors hover:border-accent hover:text-accent"
+    href="mailto:test@example.com"
+  >
+    <svg
+      aria-hidden="true"
+      fill="currentColor"
+      height="18"
+      viewBox="0 0 256 256"
+      width="18"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"
+      />
+    </svg>
+    <span>
+      test@example.com
+    </span>
+  </a>
+</div>
+`;

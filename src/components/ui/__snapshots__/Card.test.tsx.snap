@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Card renders default (non-featured) card 1`] = `
+<div>
+  <div
+    class="rounded-lg border border-border bg-surface p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent hover:bg-surface-hover"
+  >
+    Content
+  </div>
+</div>
+`;
+
+exports[`Card renders featured card with extra styling 1`] = `
+<div>
+  <div
+    class="rounded-lg border border-border bg-surface p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent hover:bg-surface-hover border-accent/60 md:col-span-2"
+  >
+    Featured content
+  </div>
+</div>
+`;

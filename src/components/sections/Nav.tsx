@@ -24,13 +24,13 @@ export function Nav() {
         </Link>
 
         <div className="hidden items-center gap-6 lg:flex">
-          {links.map((link, index) => (
+          {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="font-mono text-sm text-text-secondary transition-colors hover:text-accent"
+              className="text-sm text-text-secondary transition-colors hover:text-accent"
             >
-              <span className="text-accent">0{index + 1}</span> {link.label}
+              {link.label}
             </a>
           ))}
         </div>
@@ -66,7 +66,7 @@ export function Nav() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="font-mono text-sm text-text-secondary hover:text-accent"
+                className="text-sm text-text-secondary hover:text-accent"
               >
                 {link.label}
               </a>
