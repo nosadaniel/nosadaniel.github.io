@@ -13,6 +13,9 @@
 *.pem
 next-env.d.ts
 
+# planning docs / personal bio material, not for the public repo
+/docs
+
 # env
 .env*.local
 
