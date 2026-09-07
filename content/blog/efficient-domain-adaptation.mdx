@@ -1,0 +1,65 @@
+---
+title: "Efficient Domain Adaptation for Real-World LLM Use Cases"
+date: "2026-09-07"
+summary: "How a lightweight fine-tuned adapter learned to reason about phishing emails, not just flag them, without retraining a billion-parameter model."
+---
+
+Large language models arrive knowing a huge amount about the world in general, and very little about your specific problem. That gap is domain adaptation: the work of teaching a big, general model to be genuinely useful for one narrow, high-stakes task.
+
+Working with Luong Nguyen, I explored a practical version of this for a security use case: phishing email analysis.
+
+## The problem with "just classify it"
+
+Most phishing detectors are trained to output a label: phishing or not phishing. That's useful, but it throws away the most valuable part of a security analyst's job, the reasoning. Why does this email look suspicious? Which signals matter? What should the reader actually do?
+
+We wanted a model that could explain its reasoning about a threat, not just flag it.
+
+## The approach
+
+Rather than retraining a large model from scratch, which is expensive, slow, and unnecessary for a narrow task, we adapted a smaller open model using a lightweight technique:
+
+- **Base model:** a quantized Llama 3.1 8B model
+- **Fine-tuning method:** LoRA (Low-Rank Adaptation) adapters via Unsloth, which update a small fraction of the model's parameters instead of all of them
+- **Training data:** we built an instruction-style dataset from the CEAS-08 phishing email dataset, using a larger model to generate structured, explanation-style training examples from the original emails
+- **Evaluation:** a separate evaluation pipeline measured whether the fine-tuned model actually got better, not just different
+
+This is the core idea behind efficient domain adaptation: large base models give you a huge head start, but a small, targeted training pass is often enough to make them genuinely useful for a specific domain and workflow.
+
+## Did it work
+
+Yes. Compared to the untuned baseline, the fine-tuned adapter improved measurably:
+
+| Metric | Baseline | Fine-tuned |
+|---|---|---|
+| Accuracy | 91.4% | 93.4% |
+| Precision | - | 97.4% |
+| Recall | - | 89.1% |
+| F1 Score | - | 93.1% |
+
+The precision number is the one that matters most in practice: a security tool that cries wolf constantly gets ignored. High precision means that when this model flags something as suspicious, it's very rarely wrong.
+
+## Why this approach matters
+
+Three things made this worth doing this way rather than the alternatives:
+
+1. **No need to retrain billions of parameters.** LoRA adapters are small (megabytes, not gigabytes) and cheap to train and store.
+2. **Better alignment to the specific task.** A general-purpose model doesn't know your organization's threat landscape. A small amount of targeted training data teaches it exactly the reasoning pattern you need.
+3. **Data stays in-house.** For security and compliance-sensitive use cases, being able to fine-tune a small adapter on your own infrastructure, rather than sending sensitive data to a third-party model provider for retraining, is a real advantage.
+
+## Try it yourself
+
+Everything from this project is published:
+
+- **Live demo:** [huggingface.co/spaces/nosadaniel/fined-model](https://huggingface.co/spaces/nosadaniel/fined-model) (the Space sleeps when idle, so the first load may take about 30 seconds to wake up)
+- **LoRA adapter:** [huggingface.co/nosadaniel/llama3-1-8b-tuned](https://huggingface.co/nosadaniel/llama3-1-8b-tuned)
+- **Instruction dataset:** [huggingface.co/datasets/nosadaniel/phishing-email-training-dataset](https://huggingface.co/datasets/nosadaniel/phishing-email-training-dataset)
+- **Training notebook:** [colab.research.google.com](https://colab.research.google.com/drive/1hjLVIx0QZ57dNkAaLahPSwoYZNQkpVXz)
+
+<StatCallout
+  stats={[
+    { label: "Accuracy", value: "93.4%" },
+    { label: "Precision", value: "97.4%" },
+    { label: "Recall", value: "89.1%" },
+    { label: "F1 Score", value: "93.1%" },
+  ]}
+/>
