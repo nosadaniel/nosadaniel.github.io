@@ -53,6 +53,21 @@ describe("ProjectFilter", () => {
     expect(screen.queryByText("Test AI Project")).not.toBeInTheDocument();
   });
 
+  it("puts the featured project first in the default All view", () => {
+    render(<ProjectFilter projects={fixtureProjects} />);
+    const titles = screen.getAllByRole("heading", { level: 3 }).map((el) => el.textContent);
+    expect(titles[0]).toBe("Test Featured Project");
+  });
+
+  it("does not force the featured project first once a category is picked", () => {
+    render(<ProjectFilter projects={fixtureProjects} />);
+    fireEvent.click(screen.getByText("AI & Agentic Workflows"));
+
+    const titles = screen.getAllByRole("heading", { level: 3 }).map((el) => el.textContent);
+    // Fixture order within the "ai" category is [Test AI Project, Test Featured Project]
+    expect(titles[0]).toBe("Test AI Project");
+  });
+
   it("renders the featured project's stats", () => {
     render(<ProjectFilter projects={fixtureProjects} />);
     expect(screen.getByText("99%")).toBeInTheDocument();
