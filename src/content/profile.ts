@@ -1,11 +1,11 @@
 export const profile = {
   name: "Nosakhare Daniel Ahanor",
-  title: "Full Stack Developer, AI Engineer",
+  title: "Full-Stack AI Engineer",
   location: "Freiburg, Germany",
   summary:
-    "Software Engineer specializing in production AI and cybersecurity applications, with experience building agentic AI and RAG systems, LLM evaluation and fine-tuning workflows, and user-facing web and mobile products. Combines full-stack engineering with Azure cloud infrastructure, Terraform, and CI/CD, with a track record of taking research-driven cybersecurity solutions from prototype to production.",
+    "Full-Stack AI Engineer with extensive experience in developing agentic AI and RAG systems, focusing on cybersecurity use cases. Proven ability to drive frontend engineering and champion DevOps practices through CI/CD pipelines and Terraform-provisioned cloud infrastructure. Contributes to applied machine-learning research, adapting foundation models for security applications. A proactive developer eager to leverage expertise in AI, cloud technologies, and full-stack development to deliver innovative solutions.",
   heroTagline:
-    "I build production AI systems for cybersecurity and beyond: fine-tuned LLMs, RAG workflows, web, mobile, and CI/CD, end to end.",
+    "Full-Stack AI Engineer with extensive experience in agentic AI systems, frontend engineering, and DevOps practices across CI/CD and cloud infrastructure.",
   headshot: "/headshot.jpeg",
   resume: "/resume.pdf",
   contact: {
