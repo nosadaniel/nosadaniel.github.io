@@ -14,7 +14,7 @@ exports[`About renders summary, experience timeline, skills, and education 1`] =
     <p
       class="mt-4 max-w-prose leading-relaxed text-text-secondary"
     >
-      Software Engineer specializing in production AI and cybersecurity applications, with experience building agentic AI and RAG systems, LLM evaluation and fine-tuning workflows, and user-facing web and mobile products. Combines full-stack engineering with Azure cloud infrastructure, Terraform, and CI/CD, with a track record of taking research-driven cybersecurity solutions from prototype to production.
+      Full-Stack AI Engineer with extensive experience in developing agentic AI and RAG systems, focusing on cybersecurity use cases. Proven ability to drive frontend engineering and champion DevOps practices through CI/CD pipelines and Terraform-provisioned cloud infrastructure. Contributes to applied machine-learning research, adapting foundation models for security applications. A proactive developer eager to leverage expertise in AI, cloud technologies, and full-stack development to deliver innovative solutions.
     </p>
     <h3
       class="mt-12 font-display text-xl font-semibold text-text-primary"
@@ -52,19 +52,19 @@ exports[`About renders summary, experience timeline, skills, and education 1`] =
           class="mt-3 list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-text-secondary"
         >
           <li>
-            Develop agentic AI and retrieval-augmented generation (RAG) systems on Azure AI for cybersecurity use cases, including automated threat and vulnerability assessments through the Intelligent Assessment Service and security-awareness training with cyberCoach
+            Developed agentic AI and retrieval-augmented generation (RAG) systems on Azure AI for cybersecurity use cases, including automated threat and vulnerability assessments via the Intelligent Assessment Service and security-awareness training with cyberCoach
           </li>
           <li>
-            Drive frontend engineering for SME- and learner-facing products, including GeigerToolbox and the sysder AI Assistant, while owning release engineering and CI/CD workflows
+            Spearheaded frontend engineering for SME- and learner-facing products, including GeigerToolbox and the sysder AI Assistant, while owning release engineering and CI/CD workflows
           </li>
           <li>
-            Contribute to AI-powered learning experiences, DataPro Assistant and DataPro Games, for the DataPro Erasmus+ programme in collaboration with Pädagogische Hochschule Freiburg
+            Contributed to AI-powered learning experiences – DataPro Assistant and DataPro Games – for the DataPro Erasmus+ programme in collaboration with Pädagogische Hochschule Freiburg
           </li>
           <li>
-            Provision and evolve Azure cloud infrastructure using Terraform and infrastructure-as-code practices
+            Provisioned and evolved Azure cloud infrastructure utilizing Terraform and infrastructure-as-code practices
           </li>
           <li>
-            Conduct applied machine-learning research on adapting foundation models for security applications, with a focus on synthetic-data generation, evaluation pipelines, and open-source publication
+            Conducted applied machine-learning research on adapting foundation models for security applications, with a focus on synthetic-data generation, evaluation pipelines, and open-source publication
           </li>
         </ul>
         <div

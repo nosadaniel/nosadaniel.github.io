@@ -16,12 +16,12 @@ exports[`Hero renders the name, title, tagline, and CTAs 1`] = `
       <p
         class="mt-2 text-lg text-accent"
       >
-        Full Stack Developer, AI Engineer
+        Full-Stack AI Engineer
       </p>
       <p
         class="mt-6 max-w-prose text-base leading-relaxed text-text-secondary"
       >
-        I build production AI systems for cybersecurity and beyond: fine-tuned LLMs, RAG workflows, web, mobile, and CI/CD, end to end.
+        Full-Stack AI Engineer with extensive experience in agentic AI systems, frontend engineering, and DevOps practices across CI/CD and cloud infrastructure.
       </p>
       <div
         class="mt-8 flex flex-wrap gap-3"
