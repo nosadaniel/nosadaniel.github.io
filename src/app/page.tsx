@@ -3,7 +3,6 @@ import { Hero } from "@/components/sections/Hero";
 import { Projects } from "@/components/sections/Projects";
 import { BlogTeaser } from "@/components/sections/BlogTeaser";
 import { About } from "@/components/sections/About";
-import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
 
 export default function Home() {
@@ -15,7 +14,6 @@ export default function Home() {
         <Projects />
         <BlogTeaser />
         <About />
-        <Contact />
       </main>
       <Footer />
     </>

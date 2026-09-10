@@ -17,8 +17,8 @@ export function Hero() {
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Button href="/#projects">View Projects</Button>
-          <Button href="/#contact" variant="secondary">
-            Contact
+          <Button href="/#about" variant="secondary">
+            About Me
           </Button>
         </div>
       </div>

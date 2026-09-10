@@ -1,4 +1,6 @@
+import { EnvelopeSimple, LinkedinLogo, GithubLogo } from "@phosphor-icons/react/dist/ssr";
 import { Tag } from "@/components/ui/Tag";
+import { IconLink } from "@/components/ui/IconLink";
 import { profile } from "@/content/profile";
 import { experience } from "@/content/experience";
 import { education, certifications } from "@/content/education";
@@ -65,6 +67,22 @@ export function About() {
         {certifications.map((cert) => (
           <Tag key={cert}>{cert}</Tag>
         ))}
+      </div>
+
+      <div id="contact" className="mt-12">
+        <h3 className="font-display text-xl font-semibold text-text-primary">Contact</h3>
+        <p className="mt-2 max-w-prose text-text-secondary">
+          Open to conversations about AI, cybersecurity, and full-stack engineering roles or collaborations.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-4">
+          <IconLink
+            href={`mailto:${profile.contact.email}`}
+            label={profile.contact.email}
+            icon={<EnvelopeSimple size={18} aria-hidden="true" />}
+          />
+          <IconLink href={profile.contact.linkedin} label="LinkedIn" icon={<LinkedinLogo size={18} aria-hidden="true" />} />
+          <IconLink href={profile.contact.github} label="GitHub" icon={<GithubLogo size={18} aria-hidden="true" />} />
+        </div>
       </div>
     </section>
   );
