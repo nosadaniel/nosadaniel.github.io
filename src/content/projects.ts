@@ -192,15 +192,4 @@ export const projects: Project[] = [
     role: "Contributor",
     links: [{ label: "GitHub", href: "https://github.com/Loupehope/PasswordChecker" }],
   },
-  {
-    slug: "infrastructure-as-code",
-    title: "Infrastructure as Code",
-    company: "cyberGEIGER GmbH",
-    category: "infra",
-    period: "2025 - 2026",
-    description: "Author Terraform modules provisioning Azure infrastructure for the platform's AI services.",
-    techStack: ["Terraform", "Azure"],
-    role: "Full development",
-    links: [],
-  },
 ];

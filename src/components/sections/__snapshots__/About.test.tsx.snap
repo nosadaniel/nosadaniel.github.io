@@ -14,7 +14,7 @@ exports[`About renders summary, experience timeline, skills, and education 1`] =
     <p
       class="mt-4 max-w-prose leading-relaxed text-text-secondary"
     >
-      Full-Stack AI Engineer with extensive experience in developing agentic AI and RAG systems, focusing on cybersecurity use cases. Proven ability to drive frontend engineering and champion DevOps practices through CI/CD pipelines and Terraform-provisioned cloud infrastructure. Contributes to applied machine-learning research, adapting foundation models for security applications. A proactive developer eager to leverage expertise in AI, cloud technologies, and full-stack development to deliver innovative solutions.
+      Full-stack Software Engineer building production AI and cross-platform mobile/web products for cybersecurity use cases – shipping Flutter apps to the Play Store and App Store, React web products, and agentic AI/RAG systems on Azure AI. Fine-tunes and evaluates LLMs for security applications, and owns the full delivery pipeline: Terraform-provisioned Azure infrastructure and CI/CD release engineering from prototype to production.
     </p>
     <h3
       class="mt-12 font-display text-xl font-semibold text-text-primary"
