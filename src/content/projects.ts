@@ -170,7 +170,7 @@ export const projects: Project[] = [
       "Static web app for practicing Kubernetes and Cloud Native Associate (KCNA) exam questions. Randomized question selection with configurable domain distribution, a 60-second-per-question timer, instant score breakdown by domain, and a review of missed questions with explanations.",
     techStack: ["HTML", "CSS", "JavaScript"],
     role: "Full development",
-    links: [{ label: "GitHub", href: "https://github.com/nosadaniel/kcna_cert_demo_quiz" }],
+    links: [{ label: "Live Site", href: "https://nosadaniel.github.io/kcna_cert_demo_quiz/" }],
   },
   {
     slug: "force-update-helper",
