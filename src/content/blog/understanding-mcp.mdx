@@ -93,7 +93,6 @@ Instead of requiring every AI application to contain its own instructions, the M
 
 Examples from this project:
 - `generate_search_prompt()` - Instructions for researching a topic
-- `generate_fetch_summary_store_file_prompt()` - Instructions for fetching, summarizing, and storing web content
 
 The important part: these instructions live **with** the MCP capability, not inside each client.
 
@@ -107,14 +106,16 @@ Examples from this project:
 
 ## Tools vs Prompts vs Resources
 
-| Primitive | Purpose | Example |
-|----------|---------|---------|
-| Tool | Perform an action | `search_papers()` |
-| Tool | Retrieve specific info | `extract_info()` |
-| Resource | Browse/read data | `papers://folders` |
-| Resource | Read topic data | `papers://{topic}` |
-| Prompt | Reusable workflow | `generate_search_prompt()` |
-| Prompt | Reusable automation | `generate_fetch_summary_store_file_prompt()` |
+**Tools** perform actions:
+- `search_papers()` - Search arXiv for papers
+- `extract_info()` - Retrieve cached paper information
+
+**Resources** expose information:
+- `papers://folders` - List all available research topics
+- `papers://{topic}` - Read papers for a specific topic
+
+**Prompts** provide reusable workflows:
+- `generate_search_prompt()` - Instructions for researching a topic
 
 This is why MCP servers are more than API wrappers. They package **capabilities** for AI applications.
 

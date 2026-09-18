@@ -119,7 +119,6 @@ export const projects: Project[] = [
     description:
       "End-to-end MCP implementation with a FastMCP server exposing tools, prompts, and resources for arXiv paper research, a LangChain AI client, Docker containerization, CI/CD, and deployment to Render. Integrated with Claude Desktop, ChatGPT, and MCP Inspector.",
     techStack: ["Python", "FastMCP", "MCP", "LangChain", "Docker"],
-    featured: true,
     role: "Full development",
     links: [
       { label: "GitHub", href: "https://github.com/nosadaniel/learn_ai" },

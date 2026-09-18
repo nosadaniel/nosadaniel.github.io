@@ -233,24 +233,6 @@ def generate_search_prompt(topic: str, num_papers: int = 5) -> str:
     """
 ```
 
-### Prompt 2: Fetch and Summarize Web Content
-
-```python
-@mcp.prompt()
-def generate_fetch_summary_store_file_prompt(url: str) -> str:
-    """Generate a prompt for fetching, summarizing, and storing web content."""
-    return f"""
-    Fetch content from {url}, summarize it in structured markdown, and save to {_get_filename_from_url(url)}.
-    
-    Steps:
-    1. Use fetch tool to get page content
-    2. Create markdown summary with headings and bullet points
-    3. Use filesystem tool to save the summary
-    
-    Do NOT output code. Execute the file-writing tool call directly.
-    """
-```
-
 ## Step 6: Run the Server
 
 ```bash
@@ -260,7 +242,7 @@ uv run src/research_server.py
 The server is now available at `http://localhost:8080/mcp` with:
 - **2 Tools**: `search_papers`, `extract_info`
 - **2 Resources**: `papers://folders`, `papers://{topic}`
-- **2 Prompts**: `generate_search_prompt`, `generate_fetch_summary_store_file_prompt`
+- **1 Prompt**: `generate_search_prompt`
 
 ## Step 7: Test with MCP Inspector
 

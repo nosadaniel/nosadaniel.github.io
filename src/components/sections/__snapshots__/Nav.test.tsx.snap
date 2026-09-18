@@ -31,7 +31,7 @@ exports[`Nav renders the nav bar with all anchor links and no mobile menu open 1
         </a>
         <a
           class="text-sm text-text-secondary transition-colors hover:text-accent"
-          href="/#blog"
+          href="/blog"
         >
           Blog
         </a>

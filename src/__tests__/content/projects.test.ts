@@ -32,9 +32,12 @@ describe("projects content", () => {
     }
   });
 
-  it("the featured project has stats", () => {
+  it("featured projects have stats", () => {
     const featured = projects.filter((p) => p.featured);
-    expect(featured.length).toBe(1);
-    expect(featured[0].stats?.length).toBeGreaterThan(0);
+    if (featured.length > 0) {
+      for (const project of featured) {
+        expect(project.stats?.length).toBeGreaterThan(0);
+      }
+    }
   });
 });
