@@ -1,0 +1,218 @@
+---
+title: "Understanding MCP: Tools, Prompts, and Resources"
+date: "2026-09-18"
+summary: "Learn how MCP solves the AI integration problem by standardizing tools, prompts, and resources for AI clients."
+---
+
+# Understanding MCP: Tools, Prompts, and Resources
+
+AI agents become much more useful when they can interact with external tools and data. An agent might need to search academic papers, query a database, read files, call an API, or interact with internal systems.
+
+Traditionally, we integrate each capability directly into the application that hosts the AI agent. That works, but it creates a scaling problem.
+
+## The Integration Problem
+
+Imagine we have:
+- M AI applications
+- N external tools or services
+
+Without a common integration layer, each AI application may need its own integration with every external service.
+
+Conceptually, that gives us:
+```
+M × N integrations
+```
+
+For example, with 4 AI applications and 5 external services: **20 possible integrations**.
+
+Each integration involves:
+- API client
+- Authentication
+- Request handling
+- Error handling
+- Tool definitions
+- Prompts
+- Data formatting
+- Maintenance
+
+## The MCP Solution
+
+Instead of every AI application directly integrating with every service, we can expose capabilities through **MCP servers**.
+
+The architecture becomes:
+```
+M AI clients
+     │
+     │ MCP
+     ▼
+N MCP servers
+     │
+     ▼
+External services
+```
+
+We move from managing every M × N combination toward maintaining **M + N components**.
+
+Build a capability once behind a standard interface and make it reusable across compatible AI clients.
+
+That's the reason MCP is useful.
+
+## MCP Is More Than Tool Calling
+
+A common introduction to MCP is: *"MCP lets an AI model call external tools."* That's true, but it doesn't tell the whole story.
+
+MCP can expose different kinds of capabilities. This project uses three important primitives:
+
+```
+┌─────────────────────────────┐
+│         MCP Server          │
+│                             │
+│  ┌─────────┐ ┌───────────┐ │
+│  │  Tools  │ │  Prompts  │ │
+│  └─────────┘ └───────────┘ │
+│                             │
+│       ┌─────────────┐       │
+│       │  Resources  │       │
+│       └─────────────┘       │
+└─────────────────────────────┘
+```
+
+### Tools
+
+Tools are **actions** the AI can execute.
+
+Examples from this project:
+- `search_papers(topic, max_results)` - Search arXiv for papers
+- `extract_info(paper_id)` - Retrieve cached paper information
+
+### Prompts
+
+Prompts are **reusable instructions or workflows**.
+
+Instead of requiring every AI application to contain its own instructions, the MCP server can expose a reusable prompt.
+
+Examples from this project:
+- `generate_search_prompt()` - Instructions for researching a topic
+- `generate_fetch_summary_store_file_prompt()` - Instructions for fetching, summarizing, and storing web content
+
+The important part: these instructions live **with** the MCP capability, not inside each client.
+
+### Resources
+
+Resources expose **information** that an MCP client can browse or read.
+
+Examples from this project:
+- `papers://folders` - Lists all available research topics
+- `papers://{topic}` - Returns papers for a specific topic
+
+## Tools vs Prompts vs Resources
+
+| Primitive | Purpose | Example |
+|----------|---------|---------|
+| Tool | Perform an action | `search_papers()` |
+| Tool | Retrieve specific info | `extract_info()` |
+| Resource | Browse/read data | `papers://folders` |
+| Resource | Read topic data | `papers://{topic}` |
+| Prompt | Reusable workflow | `generate_search_prompt()` |
+| Prompt | Reusable automation | `generate_fetch_summary_store_file_prompt()` |
+
+This is why MCP servers are more than API wrappers. They package **capabilities** for AI applications.
+
+## The Architecture Without MCP
+
+With 3 AI applications and 1 external service (arXiv):
+
+```
+                 arXiv
+                  ▲
+                  │
+       ┌──────────┼──────────┐
+       │          │          │
+   Chatbot A   Chatbot B   Chatbot C
+       │          │          │
+   arXiv SDK   arXiv SDK   arXiv SDK
+```
+
+Each application owns part of the integration. If you improve the research workflow, you may need to update all applications.
+
+## The Architecture With MCP
+
+```
+       ┌── ChatGPT
+       │
+       ├── Claude
+       │
+       ├── Python Agent
+       │
+       └── Other MCP Client
+              │
+              │ MCP
+              ▼
+┌─────────────────────┐
+│   Research MCP      │
+│                    │
+│ Tools              │
+│ Prompts            │
+│ Resources          │
+└────────┬───────────┘
+         │
+         ▼
+      arXiv
+```
+
+The research capability has **one primary implementation**. The clients consume it through a **common protocol**.
+
+That's the decoupling MCP provides.
+
+## What MCP Does Not Do
+
+MCP is **not** the LLM. It does not replace:
+- GPT
+- Claude
+- Gemini
+- Llama
+- Ollama
+- LangChain
+
+Instead, it provides a standardized way for an AI application to interact with capabilities **outside** the model.
+
+The architecture:
+```
+User
+  │
+  ▼
+AI Client (Agent / Host)
+  │
+  ├──────────► LLM
+  │
+  │ MCP
+  ▼
+MCP Server (Tools, Prompts, Resources)
+  │
+  ▼
+External Services
+```
+
+The LLM provides the reasoning. The AI client manages the interaction. The MCP server provides standardized capabilities.
+
+## Security Matters
+
+MCP provides a standardized protocol, but **standardization does not automatically make an MCP server safe**.
+
+A production MCP deployment should consider:
+- Authentication
+- Authorization
+- Network exposure
+- Input validation
+- Secrets management
+- Tool permissions
+- Prompt injection protection
+- Data access controls
+- Logging
+- Rate limiting
+
+This becomes especially important when an MCP server exposes write or destructive operations.
+
+---
+
+**Next**: [Building the MCP Research Server](/blog/building-mcp-research-server) →

@@ -9,7 +9,7 @@ import { profile } from "@/content/profile";
 const links = [
   { label: "About", href: "/#about" },
   { label: "Projects", href: "/#projects" },
-  { label: "Blog", href: "/#blog" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/#contact" },
 ];
 

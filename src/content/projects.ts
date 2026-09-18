@@ -95,7 +95,7 @@ export const projects: Project[] = [
       "Domain-adapted a foundation model (Llama 3.1 8B) via supervised fine-tuning and LoRA adapters so it can reason about phishing threats, not just classify them. Built an instruction-style data synthesis pipeline and a separate evaluation pipeline.",
     techStack: ["Python", "PEFT/LoRA", "Unsloth", "Supervised Fine-Tuning", "LLM Evaluation"],
     role: "Full research and development",
-    featured: true,
+    featured: false,
     stats: [
       { label: "Accuracy", value: "93.4%" },
       { label: "Precision", value: "97.4%" },
@@ -113,14 +113,18 @@ export const projects: Project[] = [
   },
   {
     slug: "learn-ai-mcp",
-    title: "learn_ai (MCP Research Assistant)",
+    title: "Building an MCP Server with Python: Tools, Prompts, Resources, and AI Agents",
     category: "ai",
     period: "2026",
     description:
-      "A collection of hands-on Python projects exploring LLMs and the Model Context Protocol. The flagship project is a research-assistant chatbot combining a custom FastMCP server with Claude 3.7 Sonnet to search and analyze arXiv scientific papers in real time.",
-    techStack: ["Python", "uv", "Model Context Protocol", "FastMCP", "Claude 3.7 Sonnet", "arXiv API"],
+      "End-to-end MCP implementation with a FastMCP server exposing tools, prompts, and resources for arXiv paper research, a LangChain AI client, Docker containerization, CI/CD, and deployment to Render. Integrated with Claude Desktop, ChatGPT, and MCP Inspector.",
+    techStack: ["Python", "FastMCP", "MCP", "LangChain", "Docker"],
+    featured: true,
     role: "Full development",
-    links: [{ label: "GitHub", href: "https://github.com/nosadaniel/learn_ai" }],
+    links: [
+      { label: "GitHub", href: "https://github.com/nosadaniel/learn_ai" },
+      { label: "Read the write-up", href: "/blog/understanding-mcp" },
+    ],
   },
   {
     slug: "geiger-toolbox",

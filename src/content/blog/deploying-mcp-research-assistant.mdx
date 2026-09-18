@@ -1,0 +1,426 @@
+---
+title: "Deploying the MCP Research Assistant: Docker, CI/CD, and Client Integrations"
+date: "2026-09-18"
+summary: "Containerize the MCP server with Docker, set up CI/CD to GitHub Container Registry, deploy to Render.com, and connect to AI clients."
+---
+
+# Deploying the MCP Research Assistant
+
+We have a working MCP server and client. Now let's package it, deploy it, and connect it to AI clients.
+
+**Previous**: [Building the MCP Research Server](/blog/building-mcp-research-server) ←
+
+## Step 1: Containerize with Docker
+
+### Development Container
+
+For local development with live reloading:
+
+```dockerfile
+# docker/Dockerfile.dev
+FROM python:3.12-slim
+
+WORKDIR /app
+
+RUN pip install uv
+
+COPY pyproject.toml uv.lock ./
+RUN uv pip install --system .
+
+COPY src/ ./src/
+
+EXPOSE 8080
+ENTRYPOINT ["uv", "run", "src/research_server.py"]
+```
+
+### Production Container
+
+Multi-stage build for smaller, secure images:
+
+```dockerfile
+# docker/Dockerfile.prod
+FROM python:3.12-slim AS builder
+
+WORKDIR /app
+
+# Copy uv from official image
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
+
+# Install dependencies into virtual environment
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --no-dev --no-install-project
+
+FROM python:3.12-slim AS runner
+
+WORKDIR /app
+
+# Security settings
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PATH="/app/.venv/bin:$PATH" \
+    PORT=8080
+
+# Create non-root user for security
+RUN groupadd -r appgroup && useradd -r -g appgroup -u 10001 appuser
+
+# Copy virtual environment from builder
+COPY --from=builder --chown=appuser:appgroup /app/.venv /app/.venv
+
+# Copy application source code
+COPY --chown=appuser:appgroup src/ ./src/
+
+# Create data directory
+RUN mkdir -p /app/papers && chown -R appuser:appgroup /app
+
+# Switch to non-root user
+USER appuser
+
+EXPOSE 8080
+ENTRYPOINT ["python", "src/research_server.py"]
+```
+
+### Docker Compose for Development
+
+```yaml
+# docker/docker-compose.yml
+services:
+  research-mcp:
+    container_name: research-mcp
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.dev
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../papers:/app/papers
+      - ../src:/app/src
+    restart: unless-stopped
+```
+
+Run it:
+```bash
+docker compose -f docker/docker-compose.yml up -d
+```
+
+## Step 2: CI/CD with GitHub Actions
+
+The project uses two workflows:
+
+### Main Orchestrator
+
+```yaml
+# .github/workflows/main.yml
+name: CI/CD Orchestrator
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*.*.*']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  changes:
+    name: Detect Changed Projects
+    runs-on: ubuntu-latest
+    outputs:
+      learn_mcp: ${{ steps.filter.outputs.learn_mcp }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            learn_mcp:
+              - 'learn_mcp/**'
+              - '.github/workflows/build-push-research-mcp.yml'
+
+  build-research-mcp:
+    name: Research MCP Server
+    needs: changes
+    if: |
+      needs.changes.outputs.learn_mcp == 'true' ||
+      startsWith(github.ref, 'refs/tags/v') ||
+      github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/build-push-research-mcp.yml
+```
+
+### Build and Push Workflow
+
+```yaml
+# .github/workflows/build-push-research-mcp.yml
+name: Build and Push Research MCP Docker Image to GHCR
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/research-mcp
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        if: github.event_name != 'pull_request'
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=sha,format=short
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: ./learn_mcp
+          file: ./learn_mcp/docker/Dockerfile.prod
+          platforms: linux/amd64,linux/arm64
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+```
+
+**Key features:**
+- **Multi-architecture**: Builds for amd64 and arm64
+- **Automatic tagging**: latest, branch, version, sha
+- **Caching**: Uses GitHub Actions cache
+- **Security**: Only pushes on non-PR events
+- **GHCR**: Uses GitHub Container Registry
+
+**Generated tags:**
+- `ghcr.io/nosadaniel/learn_ai/research-mcp:latest`
+- `ghcr.io/nosadaniel/learn_ai/research-mcp:sha-abc123`
+- `ghcr.io/nosadaniel/learn_ai/research-mcp:v1.0.0`
+
+## Step 3: Deploy to Render.com
+
+1. Create a new **Web Service** on Render
+2. Connect your GitHub repository
+3. Configure the service:
+   - **Name**: research-mcp
+   - **Region**: Choose closest to users
+   - **Branch**: main
+   - **Root Directory**: learn_mcp
+   - **Dockerfile Path**: docker/Dockerfile.prod
+4. Set **Auto-Deploy**: Enable
+5. Add environment variables if needed
+
+**Important configuration:**
+- **Port**: 8080 (matches server config)
+- **Scaling**: Free tier supports 1 instance with sleep after inactivity
+
+**Live endpoint:** `https://research-mcp-sha-a64029e.onrender.com/mcp`
+
+**Note:** Free tier services sleep after inactivity. First request may take 30-60 seconds to wake up.
+
+## Step 4: Connect to AI Clients
+
+Now for the fun part - connecting to various AI clients!
+
+### MCP Inspector
+
+Web-based tool for exploring MCP servers:
+
+```bash
+npx @modelcontextprotocol/inspector
+```
+
+**Connect to:**
+- Local: `http://localhost:8080/mcp`
+- Production: `https://research-mcp-sha-a64029e.onrender.com/mcp`
+
+**Features:**
+- View all tools, prompts, resources
+- Manually test capabilities
+- Inspect schemas and responses
+- Debug MCP integrations
+
+### Claude Desktop
+
+Add to `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "research-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://research-mcp-sha-a64029e.onrender.com/mcp"
+      ]
+    }
+  }
+}
+```
+
+**Note:** `mcp-remote` bridges HTTP-based MCP servers to Claude Desktop's stdio expectation.
+
+**Restart Claude Desktop** after saving. You'll see the 🔨 tools icon with `search_papers` and `extract_info` ready to use!
+
+### Cursor
+
+Add to `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "research-mcp": {
+      "url": "https://research-mcp-sha-a64029e.onrender.com/mcp"
+    }
+  }
+}
+```
+
+### VS Code Extensions
+
+For **Cline** or **Roo Code**, use similar HTTP configuration:
+
+```json
+{
+  "mcpServers": {
+    "research-mcp": {
+      "url": "https://research-mcp-sha-a64029e.onrender.com/mcp"
+    }
+  }
+}
+```
+
+### ChatGPT / LibreChat / OpenWebUI / Dify
+
+Configure with:
+```yaml
+mcp_servers:
+  research:
+    url: https://research-mcp-sha-a64029e.onrender.com/mcp
+    transport: http
+```
+
+## Step 5: Test with Different LLM Providers
+
+The chatbot supports **Ollama**, **Claude**, and **Gemini**.
+
+Edit `.env`:
+
+```bash
+# Choose provider
+LLM_PROVIDER=ollama        # or anthropic, google_genai
+LLM_MODEL=llama3.2         # or claude-3-7-sonnet, gemini-2.0-flash
+
+# Provider-specific keys (uncomment as needed)
+# ANTHROPIC_API_KEY=your_key_here
+# GOOGLE_API_KEY=your_key_here
+# OLLAMA_BASE_URL=http://localhost:11434
+```
+
+### Ollama (Local)
+
+```bash
+# Install
+curl -fsSL https://ollama.com/install.sh | sh
+
+# Pull a model
+ollama pull llama3.2
+
+# Configure
+LLM_PROVIDER=ollama
+LLM_MODEL=llama3.2
+```
+
+**Pros:** Free, local, private, no API keys needed
+
+### Anthropic Claude
+
+Get API key from [Anthropic Console](https://console.anthropic.com/)
+
+```bash
+LLM_PROVIDER=anthropic
+LLM_MODEL=claude-3-7-sonnet-20250219
+ANTHROPIC_API_KEY=your_key_here
+```
+
+**Pros:** State-of-the-art reasoning, reliable, production-ready
+
+### Google Gemini
+
+Get API key from [Google Cloud Console](https://console.cloud.google.com/)
+
+```bash
+LLM_PROVIDER=google_genai
+LLM_MODEL=gemini-2.0-flash
+GOOGLE_API_KEY=your_key_here
+```
+
+**Pros:** Fast, capable, competitive pricing
+
+## Quick Start
+
+```bash
+# Clone and setup
+git clone https://github.com/nosadaniel/learn_ai.git
+cd learn_ai/learn_mcp
+uv sync
+cp .env.example .env
+
+# Terminal 1: Start server
+uv run src/research_server.py
+
+# Terminal 2: Start chatbot
+uv run src/mcp_chatbot.py
+
+# Ask a question:
+# "Find papers on machine learning"
+# "What are recent trends in AI security?"
+```
+
+Or connect directly to the **live server**:
+```bash
+npx @modelcontextprotocol/inspector
+# Connect to: https://research-mcp-sha-a64029e.onrender.com/mcp
+```
+
+## Project Links
+
+- **GitHub**: [github.com/nosadaniel/learn_ai](https://github.com/nosadaniel/learn_ai)
+- **Live MCP Server**: [research-mcp-sha-a64029e.onrender.com/mcp](https://research-mcp-sha-a64029e.onrender.com/mcp)
+- **Docker Image**: [ghcr.io/nosadaniel/learn_ai/research-mcp](https://github.com/nosadaniel/learn_ai/pkgs/container/research-mcp)
+
+## Key Takeaways
+
+1. **MCP decouples AI from tools** - Build once, use everywhere
+2. **Standardization enables reuse** - Same server works with multiple clients
+3. **Full workflow demonstrated** - Server → Container → CI/CD → Deployment → Integration
+4. **Multiple LLM options** - Test locally with Ollama or use cloud providers
+5. **Production ready** - Docker, CI/CD, and deployment all set up
+
+The research assistant shows that you don't need to be an AI expert to build powerful AI tools. With MCP, you can focus on what you want to accomplish, not the integration plumbing.
+
+---
+
+**Series Complete!**
+
+1. [Understanding MCP: Tools, Prompts, and Resources](/blog/understanding-mcp)
+2. [Building the MCP Research Server](/blog/building-mcp-research-server)
+3. [Deploying the MCP Research Assistant](/blog/deploying-mcp-research-assistant) ← You are here
