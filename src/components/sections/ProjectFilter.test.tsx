@@ -26,11 +26,11 @@ const fixtureProjects: Project[] = [
     links: [],
   },
   {
-    slug: "test-infra-project",
-    title: "Test Infra Project",
-    category: "infra",
+    slug: "test-cybersecurity-project",
+    title: "Test Cybersecurity Project",
+    category: "cybersecurity",
     period: "2025",
-    description: "A test infra project.",
+    description: "A test cybersecurity project.",
     techStack: ["Terraform"],
     role: "Full development",
     links: [],
@@ -41,16 +41,17 @@ describe("ProjectFilter", () => {
   it("renders all projects by default", () => {
     const { container } = render(<ProjectFilter projects={fixtureProjects} />);
     expect(screen.getByText("Test AI Project")).toBeInTheDocument();
-    expect(screen.getByText("Test Infra Project")).toBeInTheDocument();
+    expect(screen.getByText("Test Cybersecurity Project")).toBeInTheDocument();
     expect(container).toMatchSnapshot();
   });
 
   it("filters to only the selected category", () => {
     render(<ProjectFilter projects={fixtureProjects} />);
-    fireEvent.click(screen.getByText("Infrastructure & DevOps"));
+    fireEvent.click(screen.getByText("Cybersecurity Applications"));
 
-    expect(screen.getByText("Test Infra Project")).toBeInTheDocument();
+    expect(screen.getByText("Test Cybersecurity Project")).toBeInTheDocument();
     expect(screen.queryByText("Test AI Project")).not.toBeInTheDocument();
+    expect(screen.queryByText("Test Featured Project")).not.toBeInTheDocument();
   });
 
   it("puts the featured project first in the default All view", () => {
@@ -61,7 +62,7 @@ describe("ProjectFilter", () => {
 
   it("does not force the featured project first once a category is picked", () => {
     render(<ProjectFilter projects={fixtureProjects} />);
-    fireEvent.click(screen.getByText("AI & Agentic Workflows"));
+    fireEvent.click(screen.getByText("LLM & AI Agentic Applications"));
 
     const titles = screen.getAllByRole("heading", { level: 3 }).map((el) => el.textContent);
     // Fixture order within the "ai" category is [Test AI Project, Test Featured Project]

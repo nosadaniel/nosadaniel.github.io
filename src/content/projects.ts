@@ -1,4 +1,4 @@
-export type ProjectCategory = "ai" | "cybersecurity" | "open-source" | "infra";
+export type ProjectCategory = "ai" | "cybersecurity" | "open-source";
 
 export type ProjectLink = {
   label: string;
@@ -21,10 +21,9 @@ export type Project = {
 };
 
 export const categoryLabels: Record<ProjectCategory, string> = {
-  ai: "AI & Agentic Workflows",
+  ai: "LLM & AI Agentic Applications",
   cybersecurity: "Cybersecurity Applications",
-  "open-source": "Open Source Contributions",
-  infra: "Infrastructure & DevOps",
+  "open-source": "Open Source Applications/Libraries",
 };
 
 export const projects: Project[] = [
@@ -44,7 +43,7 @@ export const projects: Project[] = [
     slug: "cybercoach",
     title: "cyberCoach",
     company: "cyberGEIGER GmbH",
-    category: "ai",
+    category: "cybersecurity",
     period: "2025 - 2026",
     description:
       "Conversational AI security-awareness assistant for non-technical users. Responds instantly to security incidents with actionable advice via WhatsApp and Telegram.",
@@ -60,7 +59,7 @@ export const projects: Project[] = [
     slug: "datapro-assistant",
     title: "DataPro Assistant",
     company: "cyberGEIGER GmbH (DataPro Erasmus+)",
-    category: "ai",
+    category: "cybersecurity",
     period: "2025 - 2026",
     description: "AI learning assistant chatbot for the DataPro Erasmus+ programme with Pädagogische Hochschule Freiburg.",
     techStack: ["Python", "OpenAI SDK", "FastAPI", "React", "TypeScript"],
@@ -167,7 +166,7 @@ export const projects: Project[] = [
   {
     slug: "kcna-practice-exam-app",
     title: "KCNA Practice Exam App",
-    category: "cybersecurity",
+    category: "open-source",
     period: "2025",
     description:
       "Static web app for practicing Kubernetes and Cloud Native Associate (KCNA) exam questions. Randomized question selection with configurable domain distribution, a 60-second-per-question timer, instant score breakdown by domain, and a review of missed questions with explanations.",

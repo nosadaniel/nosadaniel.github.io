@@ -8,7 +8,7 @@ import { ExpandableText } from "@/components/ui/ExpandableText";
 import { cn } from "@/lib/utils";
 import { categoryLabels, type Project, type ProjectCategory } from "@/content/projects";
 
-const categories: (ProjectCategory | "all")[] = ["all", "ai", "cybersecurity", "open-source", "infra"];
+const categories: (ProjectCategory | "all")[] = ["all", ...Object.keys(categoryLabels) as ProjectCategory[]];
 
 export function ProjectFilter({ projects }: { projects: Project[] }) {
   const [active, setActive] = useState<ProjectCategory | "all">("all");
